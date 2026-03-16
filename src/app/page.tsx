@@ -1,65 +1,106 @@
-import Image from "next/image";
+import { GitBranch, Target, Zap, TrendingUp, Brain, Move, Crosshair, Shield, Footprints } from "lucide-react"
 
-export default function Home() {
+const domains = [
+  { name: "Serve", icon: Target, skills: 0, color: "text-chart-1" },
+  { name: "Return", icon: Shield, skills: 0, color: "text-chart-2" },
+  { name: "Third Shot", icon: Crosshair, skills: 0, color: "text-chart-3" },
+  { name: "Dinking", icon: Zap, skills: 0, color: "text-chart-4" },
+  { name: "Volleying", icon: Move, skills: 0, color: "text-chart-5" },
+  { name: "Transition", icon: Footprints, skills: 0, color: "text-chart-1" },
+  { name: "Strategy", icon: Brain, skills: 0, color: "text-chart-2" },
+  { name: "Movement", icon: TrendingUp, skills: 0, color: "text-chart-3" },
+]
+
+export default function SkillGraph() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-[20px] font-bold">Skill Graph</h1>
+        <p className="text-[12px] text-muted-foreground">Scaffolded mastery for pickleball — 8 domains, structured progression</p>
+      </div>
+
+      {/* Stats row */}
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div className="rounded-xl border bg-card p-4 shadow-sm shadow-black/[0.04]">
+          <div className="flex items-center gap-2 text-[12px] text-muted-foreground">
+            <GitBranch className="size-3.5" />
+            Total Skills
+          </div>
+          <p className="mt-1 text-[20px] font-bold">0</p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="rounded-xl border bg-card p-4 shadow-sm shadow-black/[0.04]">
+          <div className="flex items-center gap-2 text-[12px] text-muted-foreground">
+            <Target className="size-3.5" />
+            Domains
+          </div>
+          <p className="mt-1 text-[20px] font-bold">8</p>
         </div>
-      </main>
+        <div className="rounded-xl border bg-card p-4 shadow-sm shadow-black/[0.04]">
+          <div className="flex items-center gap-2 text-[12px] text-muted-foreground">
+            <Zap className="size-3.5" />
+            Sources Ingested
+          </div>
+          <p className="mt-1 text-[20px] font-bold">0</p>
+        </div>
+        <div className="rounded-xl border bg-card p-4 shadow-sm shadow-black/[0.04]">
+          <div className="flex items-center gap-2 text-[12px] text-muted-foreground">
+            <TrendingUp className="size-3.5" />
+            Current Level
+          </div>
+          <p className="mt-1 text-[20px] font-bold">--</p>
+        </div>
+      </div>
+
+      {/* Skill Domains Grid */}
+      <div>
+        <h2 className="mb-3 text-[15px] font-semibold">Skill Domains</h2>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {domains.map((domain) => (
+            <div key={domain.name} className="rounded-xl border bg-card p-4 shadow-sm shadow-black/[0.04] transition-shadow hover:shadow-md hover:shadow-black/[0.06]">
+              <domain.icon className={`size-5 ${domain.color}`} />
+              <p className="mt-2 text-[13px] font-medium">{domain.name}</p>
+              <p className="text-[11px] text-muted-foreground">{domain.skills} skills mapped</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Knowledge Graph Placeholder */}
+      <div className="rounded-xl border bg-card shadow-sm shadow-black/[0.04]">
+        <div className="border-b px-4 py-3">
+          <h2 className="text-[15px] font-semibold">Knowledge Graph</h2>
+          <p className="text-[11px] text-muted-foreground">Interactive skill tree visualization</p>
+        </div>
+        <div className="flex flex-col items-center justify-center py-20 text-center">
+          <GitBranch className="size-8 text-muted-foreground/30" />
+          <p className="mt-3 text-[13px] font-medium text-muted-foreground">No skills ingested yet</p>
+          <p className="mt-1 max-w-xs text-[12px] text-muted-foreground/70">Ingest YouTube transcripts and coaching content to build the skill graph</p>
+        </div>
+      </div>
+
+      {/* Diagnostic Entry Point */}
+      <div className="rounded-xl border bg-card shadow-sm shadow-black/[0.04]">
+        <div className="border-b px-4 py-3">
+          <h2 className="text-[15px] font-semibold">Quick Diagnostic</h2>
+          <p className="text-[11px] text-muted-foreground">&quot;I keep losing to players I should beat&quot;</p>
+        </div>
+        <div className="divide-y">
+          {[
+            { q: "At the kitchen line", desc: "Dinking & reset problems" },
+            { q: "On my serve or return", desc: "Serve depth & return positioning" },
+            { q: "During baseline rallies", desc: "Third shot selection & execution" },
+            { q: "After I get to the net", desc: "Volley technique & speed-up defense" },
+          ].map((item) => (
+            <div key={item.q} className="flex items-center justify-between px-4 py-3 text-[13px] transition-colors hover:bg-accent/50">
+              <div>
+                <p className="font-medium">{item.q}</p>
+                <p className="text-[11px] text-muted-foreground">{item.desc}</p>
+              </div>
+              <span className="text-[11px] text-muted-foreground">Coming soon</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  );
+  )
 }
